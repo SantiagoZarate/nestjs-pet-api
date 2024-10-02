@@ -5,14 +5,26 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { CatController } from './cats/cat.controller';
-import { CatService } from './cats/cat.service';
+import { CatModule } from './cats/cat.module';
 import { LoggerMiddleware } from './cats/middlewares/logger.middleware';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Cat } from './cats/cat.entity';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [CatController],
-  providers: [CatService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'root',
+      password: 'password',
+      database: 'root',
+      entities: [Cat],
+      synchronize: true,
+    }),
+    ConfigModule.forRoot(),
+    CatModule,
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
