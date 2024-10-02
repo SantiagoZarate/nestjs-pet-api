@@ -1,5 +1,3 @@
-export interface Cat {
-  name: string;
-  breed: string;
-  ageInYears: number;
-}
+import { Cat } from '../cat.entity';
+
+export type CatSelect = Cat['id'];

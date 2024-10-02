@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 import { CatService } from './cat.service';
 import { CatCreateDTO } from './dtos/catCreateDTO';
 
@@ -9,6 +17,16 @@ export class CatController {
   @Get()
   findAll() {
     return this.catService.getAll();
+  }
+
+  @Get('/:id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.catService.getOne(id);
+  }
+
+  @Delete('/:id')
+  deleteOne(@Param('id', ParseIntPipe) id: number) {
+    return this.catService.deleteOne(id);
   }
 
   @Post()
