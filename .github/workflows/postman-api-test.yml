@@ -1,4 +1,5 @@
-name: Automated API tests using Postman CLI by ${{ github.actor }} 🚀
+name: Automated API tests using Postman CLI 🚀
+run-name: Postman api test by ${{ github.actor }}
 
 on:
   push:
