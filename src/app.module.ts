@@ -14,11 +14,12 @@ import { Cat } from './cats/cat.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
+      // url: 'postgres://root:password@localhost:5432/test',
       host: 'localhost',
       port: 5432,
       username: 'root',
       password: 'password',
-      database: 'root',
+      database: 'postgres',
       entities: [Cat],
       synchronize: true,
     }),
